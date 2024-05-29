@@ -9,11 +9,26 @@ const resolvers = {
     games: function () {
       return db.games;
     },
+    game: function (_, args) {
+      return db.games.find((game) => {
+        return game.id === args.id;
+      });
+    },
     reviews: function () {
       return db.reviews;
     },
+    review: function (_, args) {
+      return db.reviews.find((review) => {
+        return review.id === args.id;
+      });
+    },
     authors: function () {
       return db.authors;
+    },
+    author: function () {
+      return db.authors.find((author) => {
+        return author.id === args.id;
+      });
     },
   },
 };
