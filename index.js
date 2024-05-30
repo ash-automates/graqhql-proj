@@ -57,6 +57,21 @@ const resolvers = {
       });
     },
   },
+  Mutation: {
+    deleteGame: function (_, args) {
+      return db.games.filter((game) => {
+        return game.id !== args.id;
+      });
+    },
+    addGame: function (_, args) {
+      let gameToAdd = {
+        ...args.game,
+        id: Math.floor(Math.random() * 10000).toString(),
+      };
+      db.games.push(gameToAdd);
+      return gameToAdd;
+    },
+  },
 };
 
 const server = new ApolloServer({
