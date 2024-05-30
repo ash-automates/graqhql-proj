@@ -31,6 +31,32 @@ const resolvers = {
       });
     },
   },
+  Game: {
+    reviews: function (parent) {
+      return db.reviews.filter((review) => {
+        return review.game_id === parent.id;
+      });
+    },
+  },
+  Author: {
+    reviews: function (parent) {
+      return db.reviews.filter((review) => {
+        return review.author_id === parent.id;
+      });
+    },
+  },
+  Review: {
+    game: function (parent) {
+      return db.games.find((game) => {
+        return game.id === parent.game_id;
+      });
+    },
+    author: function (parent) {
+      return db.authors.find((author) => {
+        return author.id === parent.author_id;
+      });
+    },
+  },
 };
 
 const server = new ApolloServer({
